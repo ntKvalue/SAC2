@@ -28,7 +28,7 @@ var ajaxCall = (key, url, prompt) => {
   });
 };
 
-const url = "https://api.openai.com/v1";
+const url = "https://platform.openai.com/playground";
 
 (function () {
   const template = document.createElement("template");
