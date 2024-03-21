@@ -1,53 +1,23 @@
-var ajaxCall = (key, url, prompt) => {
-  return new Promise((resolve, reject) => {
-    $.ajax({
-      url: url,
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify({
-        model: "text-davinci-003",
-        prompt: prompt,
-        max_tokens: 1024,
-        n: 1,
-        temperature: 0.5,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${key}`,
-      },
-      crossDomain: true,
-      success: function (response, status, xhr) {
-        resolve({ response, status, xhr });
-      },
-      error: function (xhr, status, error) {
-        const err = new Error('xhr error');
-        err.status = xhr.status;
-        reject(err);
-      },
-    });
-  });
-};
+// main.js
 
-const url = "https://platform.openai.com/playground";
+// Función para enviar una solicitud a la API de OpenAI
+function sendToOpenAI(prompt) {
+  const apiKey = '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'; // Reemplaza con tu clave de API
+  const endPoint = 'https://api.openai.com/v1/engines/davinci-codex/completions'; // Endpoint de la API
 
-(function () {
-  const template = document.createElement("template");
-  template.innerHTML = `
-      <style>
-      </style>
-      <div id="root" style="width: 100%; height: 100%;">
-      </div>
-    `;
-  class MainWebComponent extends HTMLElement {
-    async post(apiKey, endpoint, prompt) {
-      const { response } = await ajaxCall(
-        apiKey,
-        `${url}/${endpoint}`,
-        prompt
-      );
-      console.log(response.choices[0].text);
-      return response.choices[0].text;
-    }
-  }
-  customElements.define("custom-widget", MainWebComponent);
-})();
+  // Realiza una llamada POST a la API
+  const response = post(apiKey, endPoint, prompt);
+
+  // Procesa la respuesta y muestra el resultado en tu widget
+  return response;
+}
+
+// Función para realizar una solicitud POST
+function post(apiKey, endPoint, prompt) {
+  // Implementa la lógica para realizar una solicitud POST aquí
+  // Puedes usar bibliotecas como Axios o fetch para hacer la llamada
+
+  return result;
+}
+
+
